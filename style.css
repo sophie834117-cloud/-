@@ -173,7 +173,9 @@ header { text-align: center; margin-bottom: 25px; }
 .twitter:hover { background: #000000; border-color: #333; }
 .tiktok:hover { background: #000000; border-color: #ff0050; }
 .youtube:hover { background: #FF0000; }
-
+.reddit:hover { background: #FF4500; border-color: #FF4500; }
+.facebook:hover { background: #1877F2; border-color: #1877F2; }
+                 
 /* Modal Styling */
 .modal-overlay {
     position: fixed;
