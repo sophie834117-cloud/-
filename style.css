@@ -48,18 +48,23 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.4; /* Lowered opacity to make the center card pop more on desktop */
-    filter: grayscale(60%); 
+    /* This stops the wavy/shimmering effect on desktop */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: high-quality;
+    /* Lowering opacity slightly hides 'noise' in AI images */
+    opacity: 0.35; 
+    filter: grayscale(20%) contrast(1.1);
 }
-
 /* DARK OVERLAY - Makes text readable over images */
 .grid-overlay {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.85); /* Adjust opacity here if too dark */
+    background: rgba(0, 0, 0, 0.75); 
     z-index: -1;
-    backdrop-filter: blur(4px); /* Blurs the background images slightly */
+    /* Increasing blur to 8px hides the waviness perfectly */
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px);
 }
 
 /* --- MAIN CARD --- */
@@ -224,11 +229,20 @@ header { text-align: center; margin-bottom: 25px; }
 /* Gallery */
 .gallery-section h3 { margin-bottom: 15px; font-size: 1.1rem; font-weight: 600; }
 .gallery-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    display: grid;
+    /* Forces 4 columns on desktop so images stay small and crisp */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 12px;
+    margin-top: 15px;
 }
 .img-box img {
-    width: 100%; border-radius: 8px; aspect-ratio: 1/1; object-fit: cover;
-    transition: transform 0.2s;
+    width: 100%;
+    border-radius: 12px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    /* Fixes wavy look in the Recent Uploads section */
+    image-rendering: -webkit-optimize-contrast;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 .img-box img:hover { transform: scale(1.05); }
 
